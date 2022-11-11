@@ -69,7 +69,7 @@ class UI(QDialog):
             File does not have to exist.
             """
         path_var = QFileDialog.getSaveFileName(self, "Select Directory", default_directory, "PDF Files (*.pdf)")
-        file_only = str((path_var)[0])  # Grab first item of tuple and return string
+        file_only = str(path_var[0])  # Grab first item of tuple and return string
         self.out_dir_label.setText(file_only)
         return file_only
 
