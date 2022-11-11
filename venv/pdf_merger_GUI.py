@@ -34,12 +34,11 @@ class UI(QDialog):
         self.file1button.clicked.connect(self.clicker1)  # clicker function called on button press
         self.file2button.clicked.connect(self.clicker2)
         self.out_dir_button.clicked.connect(self.out_directory)
-        self.merge_button.clicked.connect(lambda: merge_pdfs(self.files, output_file))  # TODO: FIX where function only runs as lambda.
+        self.merge_button.clicked.connect(lambda: self.merge_pdfs(self.files, output_file))  # TODO: FIX where function only runs as lambda.
         # Attempting to run original function results in "argument 1 has unexpected type 'NoneType'
 
         # Show the app
         self.show()
-
 
     def clicker1(self):
         """Display file name when button is pressed. """
