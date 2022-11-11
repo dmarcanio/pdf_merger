@@ -7,6 +7,7 @@ default_directory = r"C:\Users\DominicMarcanio\OneDrive - we-do-IT, Inc\Document
 output_file = r"C:\Users\DominicMarcanio\OneDrive - we-do-IT, Inc\Documents\Expenses\merged.pdf"
 # files = []
 
+
 # Boilerplate code to create QT window and import UI designed in QT designer.exe
 class UI(QDialog):
     def __init__(self):
@@ -27,6 +28,7 @@ class UI(QDialog):
         self.merge_button = self.findChild(QPushButton, "merge_button")
         self.out_dir_button = self.findChild(QPushButton, "out_dir_button")
         self.out_dir_label = self.findChild(QLabel, "out_dir_label")
+        self.list_test_label = self.findChild(QLabel, "list_test_label")
 
         # Call function on button click
         self.file1button.clicked.connect(self.clicker1)  # clicker function called on button press
@@ -37,12 +39,6 @@ class UI(QDialog):
         # Show the app
         self.show()
 
-    # def clicker(self, label_to_update):
-    #     """ Get directory / file path from user and update label. """
-    #     fname = str(self.get_directory())
-    #     if fname:
-    #         self.label_to_update.setText(fname)
-    #         self.files.append(fname)
 
     def clicker1(self):
         """Display file name when button is pressed. """
@@ -54,9 +50,10 @@ class UI(QDialog):
         if fname:  # only show fname if file was selected (show null if dialog was cancelled.)
             self.file1label.setText(file1only)  # 0th item from tuple = file name only
             self.files.append(file1only)
+            self.list_test_label.setText(str(self.files))
+
             # TODO: Rework logic so this function can be called from either button.
             # TODO: Use line above as parameter for PDF project
-
 
     def clicker2(self):
         """Select 2nd file and display file name on label """
@@ -65,6 +62,7 @@ class UI(QDialog):
         if fname2:
             self.file2label.setText(file2only)
             self.files.append(file2only)
+            self.list_test_label.setText(str(self.files))
 
     def out_directory(self):
         """ On button press, user select output directory and new file name.
