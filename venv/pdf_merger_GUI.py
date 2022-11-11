@@ -34,7 +34,8 @@ class UI(QDialog):
         self.file1button.clicked.connect(self.clicker1)  # clicker function called on button press
         self.file2button.clicked.connect(self.clicker2)
         self.out_dir_button.clicked.connect(self.out_directory)
-        self.merge_button.clicked.connect(lambda: merge_pdfs(self.files, output_file))
+        self.merge_button.clicked.connect(lambda: merge_pdfs(self.files, output_file))  # TODO: FIX where function only runs as lambda.
+        # Attempting to run original function results in "argument 1 has unexpected type 'NoneType'
 
         # Show the app
         self.show()
@@ -92,7 +93,9 @@ class UI(QDialog):
 
 
 # Initialize the app
-app = QApplication(sys.argv)
-UIWindow = UI()
-sys.exit(app.exec())
+# Code block to execute only when run as script, not imported as module
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    UIWindow = UI()
+    sys.exit(app.exec())
 
