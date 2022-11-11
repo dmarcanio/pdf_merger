@@ -57,6 +57,7 @@ class UI(QDialog):
             # TODO: Rework logic so this function can be called from either button.
             # TODO: Use line above as parameter for PDF project
 
+
     def clicker2(self):
         """Select 2nd file and display file name on label """
         fname2 = QFileDialog.getOpenFileName(self, "Open File", default_directory, "PDF Files (*.pdf)")
