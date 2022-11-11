@@ -4,7 +4,7 @@ from PyQt6 import uic
 import sys
 
 default_directory = r"C:\Users\DominicMarcanio\OneDrive - we-do-IT, Inc\Documents"
-output_file = r"C:\Users\DominicMarcanio\OneDrive - we-do-IT, Inc\Documents\Expenses\merged.pdf"
+# output_file = r"C:\Users\DominicMarcanio\OneDrive - we-do-IT, Inc\Documents\Expenses\merged.pdf"
 # files = []
 
 
@@ -15,7 +15,7 @@ class UI(QDialog):
 
         # Self attributes for file 1, file 2, output directory
         self.files = []
-        self.output = ""  # output PDF file
+        self.output_file = ""  # output PDF file
 
         # Load the UI file from QT designer
         uic.loadUi("MergePDF_UI_Designer.ui", self)  # file located in venv directory
@@ -34,7 +34,7 @@ class UI(QDialog):
         self.file1button.clicked.connect(self.clicker1)  # clicker function called on button press
         self.file2button.clicked.connect(self.clicker2)
         self.out_dir_button.clicked.connect(self.out_directory)
-        self.merge_button.clicked.connect(lambda: self.merge_pdfs(self.files, output_file))
+        self.merge_button.clicked.connect(lambda: self.merge_pdfs(self.files, self.output_file))
         # TODO: Why does this only run if lambda. If self.merge_pdfs only, error argument type.
 
         # Show the app
@@ -71,6 +71,7 @@ class UI(QDialog):
         path_var = QFileDialog.getSaveFileName(self, "Select Directory", default_directory, "PDF Files (*.pdf)")
         file_only = str(path_var[0])  # Grab first item of tuple and return string
         self.out_dir_label.setText(file_only)
+        self.output_file = file_only  # convert string to raw string for file path
         return file_only
 
     def merge_pdfs(self, pdf_list, out_dir):
