@@ -36,6 +36,7 @@ class UI(QDialog):
         self.file2button.clicked.connect(self.clicker2)
         self.out_dir_button.clicked.connect(self.out_directory)
         self.merge_button.clicked.connect(lambda: self.merge_pdfs(self.files, self.output_file))
+        # lambda to call function and pass parameters on button click. Does not work without lambda or another function
 
         # Show the app
         self.show()
