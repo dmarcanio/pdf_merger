@@ -26,7 +26,8 @@ class UI(QDialog):
         self.merge_button = self.findChild(QPushButton, "merge_button")
         self.out_dir_button = self.findChild(QPushButton, "out_dir_button")
         self.out_dir_label = self.findChild(QLabel, "out_dir_label")
-        self.list_test_label = self.findChild(QLabel, "list_test_label")
+        self.completed_label = self.findChild(QLabel, "completed_label")
+        self.completed_label.hide(True)
 
         # Call functions on button click. One function per button in this program.
         # Could be refined via function factories later
@@ -49,7 +50,6 @@ class UI(QDialog):
         if fname:  # only show fname if file was selected (show null if dialog was cancelled.)
             self.file1label.setText(file1only)  # 0th item from tuple = file name only
             self.files.append(file1only)
-            self.list_test_label.setText(str(self.files))
 
     def clicker2(self):
         """Select 2nd file and display file name on label """
@@ -58,7 +58,6 @@ class UI(QDialog):
         if fname2:
             self.file2label.setText(file2only)
             self.files.append(file2only)
-            self.list_test_label.setText(str(self.files))
 
     def out_directory(self):
         """ On button press, user select output directory and new file name.
@@ -86,6 +85,9 @@ class UI(QDialog):
             # Write out merged PDF
             with open(out_dir, 'wb') as out:  # wb mode to write bytes
                 pdf_writer.write(out)
+
+            # Show Completed label.
+            self.completed_label.hide(False)
 
 
 # Initialize the app

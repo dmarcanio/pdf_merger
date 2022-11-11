@@ -544,9 +544,21 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="list_test_label">
+    <widget class="QLabel" name="completed_label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 170, 0);
+</string>
+     </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>PDF merge complete!</string>
      </property>
     </widget>
    </item>
