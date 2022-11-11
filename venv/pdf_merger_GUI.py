@@ -27,7 +27,7 @@ class UI(QDialog):
         self.out_dir_button = self.findChild(QPushButton, "out_dir_button")
         self.out_dir_label = self.findChild(QLabel, "out_dir_label")
         self.completed_label = self.findChild(QLabel, "completed_label")
-        self.completed_label.hide(True)
+        self.completed_label.setHidden(True)
 
         # Call functions on button click. One function per button in this program.
         # Could be refined via function factories later
@@ -87,7 +87,7 @@ class UI(QDialog):
                 pdf_writer.write(out)
 
             # Show Completed label.
-            self.completed_label.hide(False)
+            self.completed_label.setHidden(False)
 
 
 # Initialize the app
