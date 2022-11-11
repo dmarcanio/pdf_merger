@@ -73,7 +73,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Select Output Directory and File Name</string>
+      <string>Output Merged File</string>
      </property>
     </widget>
    </item>

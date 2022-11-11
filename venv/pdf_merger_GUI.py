@@ -4,23 +4,21 @@ from PyQt6 import uic
 import sys
 
 default_directory = r"C:\Users\DominicMarcanio\OneDrive - we-do-IT, Inc\Documents"
-# output_file = r"C:\Users\DominicMarcanio\OneDrive - we-do-IT, Inc\Documents\Expenses\merged.pdf"
-# files = []
 
 
-# Boilerplate code to create QT window and import UI designed in QT designer.exe
+# Class to create QT window and import UI designed in QT designer.exe
 class UI(QDialog):
     def __init__(self):
         super(UI, self).__init__()
 
         # Self attributes for file 1, file 2, output directory
-        self.files = []
+        self.files = []        # list of PDF files to pass into merge function later
         self.output_file = ""  # output PDF file
 
         # Load the UI file from QT designer
-        uic.loadUi("MergePDF_UI_Designer.ui", self)  # file located in venv directory
+        uic.loadUi("MergePDF_UI_Designer.ui", self)  # file must be located in venv directory
 
-        # Define widgets
+        # Define widgets. findChild strings must match widget names assigned in Qt Designer
         self.file1button = self.findChild(QPushButton, "file1button")  # file 1 selector button
         self.file1label = self.findChild(QLabel, "file1label")         # file 1 label
         self.file2button = self.findChild(QPushButton, "file2button")  # file 2 selector button
@@ -30,12 +28,13 @@ class UI(QDialog):
         self.out_dir_label = self.findChild(QLabel, "out_dir_label")
         self.list_test_label = self.findChild(QLabel, "list_test_label")
 
-        # Call function on button click
+        # Call functions on button click. One function per button in this program.
+        # Could be refined via function factories later
+
         self.file1button.clicked.connect(self.clicker1)  # clicker function called on button press
         self.file2button.clicked.connect(self.clicker2)
         self.out_dir_button.clicked.connect(self.out_directory)
         self.merge_button.clicked.connect(lambda: self.merge_pdfs(self.files, self.output_file))
-        # TODO: Why does this only run if lambda. If self.merge_pdfs only, error argument type.
 
         # Show the app
         self.show()
@@ -51,9 +50,6 @@ class UI(QDialog):
             self.file1label.setText(file1only)  # 0th item from tuple = file name only
             self.files.append(file1only)
             self.list_test_label.setText(str(self.files))
-
-            # TODO: Rework logic so this function can be called from either button.
-            # TODO: Use line above as parameter for PDF project
 
     def clicker2(self):
         """Select 2nd file and display file name on label """
